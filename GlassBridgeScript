@@ -1,0 +1,23 @@
+game.StarterGui:SetCore("SendNotification", {
+Title = "Made by SumitScripts",
+Text = "Z to Toggle",
+Duration = 5,
+})
+
+local player = game:GetService("Players").LocalPlayer
+local UIS = game:GetService("UserInputService")
+local kill = false
+
+UIS.InputBegan:Connect(function(input, GPE)
+if GPE then return end
+if input.KeyCode == Enum.KeyCode.Z then
+kill = not kill
+end
+end)
+
+while task.wait() do
+local parts = workspace:GetPartBoundsInRadius(player.Character:WaitForChild("HumanoidRootPart").Position, 10)
+for _, part in ipairs(parts) do
+part.CanTouch = kill
+end
+end
